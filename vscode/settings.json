@@ -3,6 +3,7 @@
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "GitHub Dark",
     "editor.rulers": [80],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "code-runner.clearPreviousOutput": true,
     "code-runner.executorMap": {
         "javascript": "node",
