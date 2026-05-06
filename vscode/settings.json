@@ -4,7 +4,7 @@
     "workbench.colorTheme": "Light 2026",
     "workbench.iconTheme": "material-icon-theme",
     "code-runner.clearPreviousOutput": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.inlineSuggest.enabled": false,
     "ruff.configuration": "<path>",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
