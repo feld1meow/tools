@@ -2,22 +2,27 @@
 
 
 ### Windows
+```powershell
 [Environment]::SetEnvironmentVariable("OLLAMA_FLASH_ATTENTION", "1", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_KV_CACHE_TYPE", "q8_0", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_NUM_PARALLEL", "1", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_KEEP_ALIVE", "24h", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_CONTEXT_LENGTH", "65536", "User")
+```
 
 
 ### MacOS
+```bash
 launchctl setenv OLLAMA_FLASH_ATTENTION 1
 launchctl setenv OLLAMA_KV_CACHE_TYPE q8_0
 launchctl setenv OLLAMA_NUM_PARALLEL 1
 launchctl setenv OLLAMA_KEEP_ALIVE 24h
 launchctl setenv OLLAMA_CONTEXT_LENGTH 65536
+```
 
 
 ### Ollama Configuration
+```bash
 ollama run qwen3.8:27b-q8_0
 /set parameter num_ctx 65536
 /set parameter num_predict 24576
@@ -28,7 +33,9 @@ ollama run qwen3.8:27b-q8_0
 /set parameter min_p 0.0
 /save qwen3.8:27b-q8_0
 /bye
+```
 
+```bash
 ollama run qwen3.8:27b
 /set parameter num_ctx 65536
 /set parameter num_predict 16384
@@ -39,9 +46,10 @@ ollama run qwen3.8:27b
 /set parameter min_p 0.0
 /save qwen3.8:27b
 /bye
-
+```
 
 ### opencode.json
+```json
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "ollama/qwen3.8:27b-q8_0",
@@ -115,3 +123,4 @@ ollama run qwen3.8:27b
     }
   }
 }
+```
