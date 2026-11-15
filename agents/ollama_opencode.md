@@ -75,7 +75,7 @@ ollama run qwen3.8:27b
           "options": {
             "temperature": 0.6,
             "top_p": 0.95,
-            "reasoningEffort": "high"
+            "reasoningEffort": "medium"
           },
           "variants": {
             "high": {
@@ -102,7 +102,7 @@ ollama run qwen3.8:27b
           "options": {
             "temperature": 0.6,
             "top_p": 0.95,
-            "reasoningEffort": "medium"
+            "reasoningEffort": "low"
           }
         }
       }
