@@ -25,5 +25,10 @@ launchctl setenv OLLAMA_KEEP_ALIVE 6h
 
 ### Ollama Configuration
 ```bash
-ollama run qwen3.8:27b
+ollama pull qwen3.8:27b
+ollama pull gemma4:31b
+ollama pull gemma4:26b
+ollama pull gemma4:e4b
+ollama pull ornith-1.5:35b
+ollama pull ornith-1.5:9b
 ```
