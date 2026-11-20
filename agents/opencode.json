@@ -11,7 +11,7 @@
       },
       "models": {
         "qwen3.8:27b": {
-          "name": "Qwen 3.8 27B (Medium — 64k)",
+          "name": "Qwen 3.8 27B",
           "tool_call": true,
           "reasoning": true,
           "attachment": true,
@@ -22,8 +22,21 @@
           },
           "options": {
             "temperature": 0.6,
-            "top_p": 0.95,
-            "reasoningEffort": "medium"
+            "top_p": 0.95
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh"
+            }
           }
         }
       }
