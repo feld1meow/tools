@@ -11,7 +11,7 @@
       },
       "models": {
         "qwen3.8:27b": {
-          "name": "Qwen 3.8 27B",
+          "name": "Qwen 3.8 27B (Dense — 64k)",
           "tool_call": true,
           "reasoning": true,
           "attachment": true,
@@ -26,7 +26,9 @@
           },
           "variants": {
             "none": {
-              "reasoningEffort": "none"
+              "reasoningEffort": "none",
+              "temperature": 0.7,
+              "top_p": 0.8
             },
             "low": {
               "reasoningEffort": "low"
@@ -36,6 +38,146 @@
             },
             "xhigh": {
               "reasoningEffort": "xhigh"
+            }
+          }
+        },
+        "gemma4:26b": {
+          "name": "Gemma 4 26B (MoE 4B Active — 64k)",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "options": {
+            "temperature": 1.0,
+            "top_p": 0.95
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "gemma4:31b": {
+          "name": "Gemma 4 31B (Dense — 64k)",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "options": {
+            "temperature": 1.0,
+            "top_p": 0.95
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "gemma4:e4b": {
+          "name": "Gemma 4 E4B (Effective 4B — 64k)",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "options": {
+            "temperature": 1.0,
+            "top_p": 0.95
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "ornith-1.5:35b": {
+          "name": "Ornith 1.5 35B (MoE 3B Active — 64k)",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": false,
+          "temperature": true,
+          "limit": {
+            "context": 65536,
+            "output": 16384
+          },
+          "options": {
+            "temperature": 0.6,
+            "top_p": 0.95
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none",
+              "temperature": 0.7,
+              "top_p": 0.8
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "ornith-1.5:9b": {
+          "name": "Ornith 1.5 9B (Dense — 32k)",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": false,
+          "temperature": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "options": {
+            "temperature": 0.6,
+            "top_p": 0.95
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none",
+              "temperature": 0.7,
+              "top_p": 0.8
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
             }
           }
         }
@@ -55,11 +197,5 @@
       ],
       "enabled": true
     }
-  },
-  "skills": {
-    "paths": [
-      "~/.config/opencode/external-skills/mattpocock-skills",
-      "~/.config/opencode/external-skills/addyosmani-agent-skills/skills"
-    ]
   }
 }
