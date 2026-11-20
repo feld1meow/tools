@@ -7,6 +7,7 @@
 [Environment]::SetEnvironmentVariable("OLLAMA_KV_CACHE_TYPE", "q8_0", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_NUM_PARALLEL", "1", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_CONTEXT_LENGTH", "65536", "User")
+[Environment]::SetEnvironmentVariable("OLLAMA_MAX_LOADED_MODELS", "1", "User")
 [Environment]::SetEnvironmentVariable("OLLAMA_KEEP_ALIVE", "6h", "User")
 ```
 
@@ -17,6 +18,7 @@ launchctl setenv OLLAMA_FLASH_ATTENTION 1
 launchctl setenv OLLAMA_KV_CACHE_TYPE q8_0
 launchctl setenv OLLAMA_NUM_PARALLEL 1
 launchctl setenv OLLAMA_CONTEXT_LENGTH 65536
+launchctl setenv OLLAMA_MAX_LOADED_MODELS 1
 launchctl setenv OLLAMA_KEEP_ALIVE 6h
 ```
 
