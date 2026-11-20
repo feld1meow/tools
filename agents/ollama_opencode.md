@@ -21,7 +21,7 @@ launchctl setenv OLLAMA_KEEP_ALIVE 6h
 ```
 
 
-### Ollama Configuration (Don`t need, because `ollama pull qwen3.8:27b` takes it)
+### Ollama Configuration (Don't need, because `ollama pull qwen3.8:27b` takes it)
 ```bash
 ollama run qwen3.8:27b
 /set parameter num_ctx 32768
