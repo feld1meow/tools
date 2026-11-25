@@ -33,6 +33,24 @@
         "source": "git",
         "url": "https://github.com/mattpocock/skills.git"
       }
+    },
+    "addyosmani": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/addyosmani/agent-skills.git"
+      }
+    },
+    "emilkowalski": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/emilkowalski/skills.git"
+      }
+    },
+    "vercel-labs": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/vercel-labs/agent-skills.git"
+      }
     }
   },
   "effortLevel": "medium",
