@@ -122,7 +122,7 @@ memory:
 # =============================================================================
 # Session Continuity (Messaging Platforms)
 # =============================================================================
-max_concurrent_sessions: 5
+max_concurrent_sessions: 3
 group_sessions_per_user: true
 
 # =============================================================================
@@ -246,7 +246,7 @@ mcp_servers:
   context7:
     url: "https://mcp.context7.com/mcp"
     headers:
-      Authorization: "Bearer ВАШ_API_КЛЮЧ"
+      Authorization: "Bearer ${CONTEXT7_API_KEY}"
 
 # =============================================================================
 # Voice Transcription (Speech-to-Text)
