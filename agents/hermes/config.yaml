@@ -145,19 +145,16 @@ streaming:
 # Skills Configuration
 # =============================================================================
 skills:
-  # Nudge the agent to create skills after complex tasks.
-  # Every N tool-calling iterations, remind the model to consider saving a skill.
-  # Set to 0 to disable.
   creation_nudge_interval: 15
-
-  # External skill directories — share skills across tools/agents without
-  # copying them into ~/.hermes/skills/.  Each path is expanded (~ and ${VAR})
-  # and resolved to an absolute path.  External dirs are read-only: skill
-  # creation always writes to ~/.hermes/skills/.  Local skills take precedence
-  # when names collide.
   # external_dirs:
   #   - ~/.agents/skills
-  #   - /home/shared/team-skills
+
+  # https://github.com/mattpocock/skills.git
+  # https://github.com/addyosmani/agent-skills.git
+  # https://github.com/emilkowalski/skills.git
+  # https://github.com/vercel-labs/agent-skills.git
+  # https://github.com/Leonxlnx/taste-skill.git
+  # https://github.com/pbakaus/impeccable.git
 
 # =============================================================================
 # Agent Behavior
