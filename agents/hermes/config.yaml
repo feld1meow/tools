@@ -37,10 +37,11 @@ plugins:
 model:
   # Default model to use (can be overridden with --model flag)
   default: "qwen3.8-flash-next-iq3_s"
-  provider: "lmstudio" #Strata called lmstudio
+  provider: "custom" #Strata
   # api_key: "your-key-here"  # Uncomment to set here instead of .env
   base_url: "http://127.0.0.1:8080/v1"
   context_length: 262144
+  supports_vision: true
 kanban:
   review_dispatch: true
 
@@ -76,7 +77,7 @@ browser:
 # =============================================================================
 tool_loop_guardrails:
   warnings_enabled: true
-  hard_stop_enabled: false
+  hard_stop_enabled: true
   non_interactive_hard_stop_enabled: true
   warn_after:
     exact_failure: 2
@@ -95,11 +96,12 @@ compression:
   checkpoint_required: false
   progress_notices: false
   # Trigger compression at this % of model's context limit (default: 0.50 = 50%)
-  threshold: 0.50
-  # threshold_tokens: 200000
+  threshold: 0.75
+  threshold_tokens: 262144
   codex_gpt55_autoraise: true
   target_ratio: 0.20
   protect_last_n: 20
+  protect_first_n: 3
   min_tail_user_messages: 1
   max_attempts: 3
   codex_app_server_auto: native
@@ -115,7 +117,7 @@ compression:
 # =============================================================================
 # Persistent Memory
 # =============================================================================
-  threshold_tokens: 262144
+
 memory:
   memory_enabled: true
   user_profile_enabled: true
@@ -282,7 +284,7 @@ stt:
   enabled: true
   local:
     model: "base"              # tiny | base | small | medium | large-v3 | turbo
-  language: "en"               # Global hint; a nonempty provider language wins. Blank falls back to HERMES_LOCAL_STT_LANGUAGE, then auto-detect.
+  language: "ru"               # Global hint; a nonempty provider language wins. Blank falls back to HERMES_LOCAL_STT_LANGUAGE, then auto-detect.
   openai:
     model: "whisper-1"         # whisper-1 | gpt-4o-mini-transcribe | gpt-4o-transcribe | gpt-transcribe
     language: ""               # blank = inherit stt.language; set "en", "es", "fr", etc. to force
@@ -356,4 +358,4 @@ onboarding:
     tool_progress_prompt: true
     busy_input_prompt: true
 approvals:
-  destructive_slash_confirm: false
+  destructive_slash_confirm: true
