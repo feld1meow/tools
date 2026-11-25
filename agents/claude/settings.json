@@ -21,6 +21,7 @@
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
   },
   "model": "opus",
+  "effortLevel": "medium",
   "extraKnownMarketplaces": {
     "chrome-devtools-plugins": {
       "source": {
@@ -65,7 +66,6 @@
       }
     }
   },
-  "effortLevel": "medium",
   "modelSettings": {
     "claude-opus-5-5": {
       "effortLevel": "high"
