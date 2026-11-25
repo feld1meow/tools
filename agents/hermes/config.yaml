@@ -324,7 +324,7 @@ updates:
 
 auxiliary:
   compression:
-    context_length: 262144
+    context_length: 131072
 onboarding:
   seen:
     tool_progress_prompt: true
