@@ -29,6 +29,12 @@
         "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git"
       }
     },
+    "context7": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/upstash/context7.git"
+      }
+    },
     "mattpocock": {
       "source": {
         "source": "git",
