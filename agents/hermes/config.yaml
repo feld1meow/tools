@@ -249,6 +249,11 @@ mcp_servers:
     command: "npx"
     args: ["-y", "chrome-devtools-mcp@latest", "--autoConnect", "--no-usage-statistics"]
 
+  context7:
+    url: "https://mcp.context7.com/mcp"
+    headers:
+      Authorization: "Bearer ВАШ_API_КЛЮЧ"
+
 # =============================================================================
 # Voice Transcription (Speech-to-Text)
 # =============================================================================
