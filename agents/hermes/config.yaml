@@ -1,0 +1,359 @@
+# Hermes Agent CLI Configuration
+# Copy settings from this example into ~/.hermes/config.yaml, or use
+# `hermes config set <section.key> <value>` to update the active profile.
+
+_config_version: 54
+
+# =============================================================================
+# Database Configuration
+# =============================================================================
+database:
+  journal_mode: "wal"  # Supported values: "wal", "delete"
+
+# =============================================================================
+# Runtime Limits
+# =============================================================================
+runtime:
+  nofile_soft_limit: 4096
+  malloc_arena_max: 4
+
+# =============================================================================
+# Attachments
+# =============================================================================
+attachments:
+  storage: "hermes-home"
+
+# =============================================================================
+# Plugin Installation
+# =============================================================================
+plugins:
+  clone_timeout_seconds: 300
+
+# =============================================================================
+# Model Configuration
+# =============================================================================
+  enabled: []
+  disabled: []
+model:
+  # Default model to use (can be overridden with --model flag)
+  default: "qwen3.8-flash-next-iq3_s"
+  provider: "lmstudio" #Strata called lmstudio
+  # api_key: "your-key-here"  # Uncomment to set here instead of .env
+  base_url: "http://127.0.0.1:8080/v1"
+  context_length: 262144
+kanban:
+  review_dispatch: true
+
+# =============================================================================
+# Terminal Tool Configuration
+# =============================================================================
+cron:
+  catch_up_missed: true  # False skips past-grace recurring misses after planned downtime.
+
+terminal:
+  backend: "local"
+  cwd: "."  # For local backend: "." = current directory. Ignored for remote backends unless a backend documents otherwise.
+  timeout: 180
+  home_mode: "auto"
+  docker_mount_cwd_to_workspace: false  # SECURITY: off by default. Opt in to mount the launch cwd into Docker /workspace.
+  lifetime_seconds: 300
+  process_wait_auto_notify: true
+  client_env_passthrough: []  # e.g. ["GEM_HOME", "POETRY_HOME"]
+
+  container_cpu: 1              # CPU cores
+  container_memory: 5120        # Memory in MB (5120 = 5GB)
+  container_disk: 51200         # Disk in MB (51200 = 50GB)
+  container_persistent: true    # Persist filesystem across sessions (false = ephemeral)
+
+# =============================================================================
+# Browser Tool Configuration
+# =============================================================================
+browser:
+  inactivity_timeout: 120
+
+# =============================================================================
+# Tool Loop Guardrails
+# =============================================================================
+tool_loop_guardrails:
+  warnings_enabled: true
+  hard_stop_enabled: false
+  non_interactive_hard_stop_enabled: true
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
+
+# =============================================================================
+# Context Compression (Auto-shrinks long conversations)
+# =============================================================================
+compression:
+  enabled: true
+  checkpoint_required: false
+  progress_notices: false
+  # Trigger compression at this % of model's context limit (default: 0.50 = 50%)
+  threshold: 0.50
+  # threshold_tokens: 200000
+  codex_gpt55_autoraise: true
+  target_ratio: 0.20
+  protect_last_n: 20
+  min_tail_user_messages: 1
+  max_attempts: 3
+  codex_app_server_auto: native
+  codex_responses_native: false
+  codex_responses_compact_threshold:
+  protect_first_n: 3
+  idle_compact_after_seconds: 0
+  hygiene_max_turn_hold_seconds: 10
+  proactive_prune_tokens: 0
+  proactive_prune_min_result_chars: 8000
+  proactive_prune_min_reclaim_tokens: 4096
+
+# =============================================================================
+# Persistent Memory
+# =============================================================================
+  threshold_tokens: 262144
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  prefetch_spill_enabled: false
+  memory_char_limit: 2200   # ~800 tokens
+  user_char_limit: 1375     # ~500 tokens
+  nudge_interval: 10        # Nudge every 10 user turns (0 = disabled)
+
+# =============================================================================
+# Session Continuity (Messaging Platforms)
+# =============================================================================
+max_concurrent_sessions:
+group_sessions_per_user: true
+
+# =============================================================================
+# Native Hosted-Room Discussion Limits
+# =============================================================================
+hosted_rooms:
+  discussion:
+    max_rounds: 3
+    max_messages: 10  # Total visible bot replies, not per member
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Gateway Streaming
+# ─────────────────────────────────────────────────────────────────────────────
+streaming:
+  enabled: false
+
+# =============================================================================
+# Skills Configuration
+# =============================================================================
+skills:
+  # Nudge the agent to create skills after complex tasks.
+  # Every N tool-calling iterations, remind the model to consider saving a skill.
+  # Set to 0 to disable.
+  creation_nudge_interval: 15
+
+  # External skill directories — share skills across tools/agents without
+  # copying them into ~/.hermes/skills/.  Each path is expanded (~ and ${VAR})
+  # and resolved to an absolute path.  External dirs are read-only: skill
+  # creation always writes to ~/.hermes/skills/.  Local skills take precedence
+  # when names collide.
+  # external_dirs:
+  #   - ~/.agents/skills
+  #   - /home/shared/team-skills
+
+# =============================================================================
+# Agent Behavior
+# =============================================================================
+agent:
+  max_turns: 150
+  reasoning_effort: "medium"
+
+  service_tier: ""
+  fast_auto_seconds: 60
+  daybreak: false
+  personalities: {}
+  #   mentor: "You are a supportive mentor. Guide, don't lecture."
+  #   reviewer:
+  #     system_prompt: "You are a meticulous code reviewer."
+  #     tone: "direct"
+  #     style: "terse"
+
+# =============================================================================
+# Gateway Lifecycle
+# =============================================================================
+gateway:
+  unmanaged_idle_exit_seconds: 600
+  signal_interrupt_grace_timeout: 1
+  service_install_choice:
+  delivery_ledger: true
+  platform_connect_timeout: 30
+  loop_watchdog: true
+  loop_watchdog_probe_interval_s: 30.0
+  loop_watchdog_probe_timeout_s: 10.0
+  loop_watchdog_max_strikes: 3
+  sessiondb_loop_guard: "off"
+  allow_all_users: false
+  bot_loop_guard:
+    enabled: true
+    max_events: 20
+    window_seconds: 300
+    cooldown_seconds: 600
+    max_hops: 4
+    bot_replies_expect_reply: false
+  startup_watchdog: true
+  startup_watchdog_timeout_seconds: 300
+  write_sessions_json: true
+  multiplex_profiles: true
+  auto_multiplex_migration: true
+  profile_routes: []
+  scale_to_zero:
+    idle_timeout_minutes: 2
+  restart_loop_guard:
+    max_restarts: 3
+    window_seconds: 60
+    max_gap_seconds: 300
+  respawn_storm:
+    max_starts: 5
+    window_seconds: 120
+  message_timestamps:
+    enabled: false
+  max_inbound_media_bytes: 134217728
+  trust_env: true
+  strict: false
+  media_delivery_allow_dirs: []
+  trust_recent_files: true
+  trust_recent_files_seconds: 600
+  api_server:
+    max_concurrent_runs: 10
+    history_tool_output_max_chars: 0
+
+# =============================================================================
+# Platform Toolsets (per-platform tool configuration)
+# =============================================================================
+platform_toolsets:
+  cli: [hermes-cli]
+  telegram: [hermes-telegram]
+  discord: [hermes-discord]
+  whatsapp: [hermes-whatsapp]
+  slack: [hermes-slack]
+  signal: [hermes-signal]
+  qqbot: [hermes-qqbot]
+
+# =============================================================================
+# MCP (Model Context Protocol) Servers
+# =============================================================================
+# mcp_servers:
+#   time:
+#     command: uvx
+#     args: ["mcp-server-time"]
+#   filesystem:
+#     command: npx
+#     args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user"]
+#   notion:
+#     url: https://mcp.notion.com/mcp
+#   github:
+#     command: npx
+#     args: ["-y", "@modelcontextprotocol/server-github"]
+#     env:
+#       GITHUB_PERSONAL_ACCESS_TOKEN: "ghp_..."
+#
+# Sampling (server-initiated LLM requests) — enabled by default.
+# Per-server config under the 'sampling' key:
+#   analysis:
+#     command: npx
+#     args: ["-y", "analysis-server"]
+#     sampling:
+#       enabled: true           # default: true
+#       model: "gemini-3-flash" # override model (optional)
+#       max_tokens_cap: 4096    # max tokens per request
+#       timeout: 30             # LLM call timeout (seconds)
+#       max_rpm: 10             # max requests per minute
+#       allowed_models: []      # model whitelist (empty = all)
+#       max_tool_rounds: 5      # tool loop limit (0 = disable)
+#       expose_client_tools: false # advertise extended sampling.tools capability
+#       log_level: "info"       # audit verbosity
+#
+
+# =============================================================================
+# Voice Transcription (Speech-to-Text)
+# =============================================================================
+stt:
+  enabled: true
+  local:
+    model: "base"              # tiny | base | small | medium | large-v3 | turbo
+  language: "en"               # Global hint; a nonempty provider language wins. Blank falls back to HERMES_LOCAL_STT_LANGUAGE, then auto-detect.
+  openai:
+    model: "whisper-1"         # whisper-1 | gpt-4o-mini-transcribe | gpt-4o-transcribe | gpt-transcribe
+    language: ""               # blank = inherit stt.language; set "en", "es", "fr", etc. to force
+    timeout: 60                # request timeout in seconds; increase for self-hosted model cold starts
+    max_retries: 1             # OpenAI SDK transport retries; set 0 to disable
+
+# =============================================================================
+# Code Execution Sandbox (Programmatic Tool Calling)
+# =============================================================================
+code_execution:
+  timeout: 300         # Max seconds per script before kill (default: 300 = 5 min)
+  max_tool_calls: 50   # Max RPC tool calls per execution (default: 50)
+
+# =============================================================================
+# Subagent Delegation
+# =============================================================================
+delegation:
+  max_iterations: 250                         # Max tool-calling turns per child (default: 250)
+
+# =============================================================================
+# Display
+# =============================================================================
+display:
+  compact: false
+  cleanup_progress: false
+  suppress_warning_notifications: false
+  busy_input_mode: interrupt
+  background_process_notifications: concise
+  bell_on_complete: false
+  bell_on_prompt: false
+  streaming: true
+
+# ───────────────────────────────────────────────────────────────────────────
+# Skin / Theme
+# ───────────────────────────────────────────────────────────────────────────
+  skin: default
+
+# =============================================================================
+# Telemetry
+# =============================================================================
+  platforms:
+    cli:
+      show_reasoning: true
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+    # endpoint: https://telemetry.nousresearch.com/v1/telemetry
+
+# =============================================================================
+# Login Policy (credentials themselves live in auth.json / .env)
+# =============================================================================
+    offer_version: 2
+auth:
+  adopt_external_logins: true
+  codex_login_flow: device_code
+
+# =============================================================================
+# Update Behavior
+# =============================================================================
+updates:
+  check: true
+  backup_keep: 5
+  non_interactive_local_changes: "stash"
+
+auxiliary:
+  compression:
+    context_length: 262144
+onboarding:
+  seen:
+    tool_progress_prompt: true
+    busy_input_prompt: true
+approvals:
+  destructive_slash_confirm: false
