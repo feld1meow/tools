@@ -51,6 +51,18 @@
         "source": "git",
         "url": "https://github.com/vercel-labs/agent-skills.git"
       }
+    },
+    "Leonxlnx": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Leonxlnx/taste-skill.git"
+      }
+    },
+    "pbakaus": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/pbakaus/impeccable.git"
+      }
     }
   },
   "effortLevel": "medium",
