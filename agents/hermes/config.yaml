@@ -28,12 +28,12 @@ attachments:
 # =============================================================================
 plugins:
   clone_timeout_seconds: 300
+  enabled: []
+  disabled: []
 
 # =============================================================================
 # Model Configuration
 # =============================================================================
-  enabled: []
-  disabled: []
 model:
   # Default model to use (can be overridden with --model flag)
   default: "qwen3.8-flash-next-iq3_s"
@@ -42,15 +42,10 @@ model:
   base_url: "http://127.0.0.1:8080/v1"
   context_length: 262144
   supports_vision: true
-kanban:
-  review_dispatch: true
 
 # =============================================================================
 # Terminal Tool Configuration
 # =============================================================================
-cron:
-  catch_up_missed: true  # False skips past-grace recurring misses after planned downtime.
-
 terminal:
   backend: "local"
   cwd: "."  # For local backend: "." = current directory. Ignored for remote backends unless a backend documents otherwise.
@@ -106,8 +101,7 @@ compression:
   max_attempts: 3
   codex_app_server_auto: native
   codex_responses_native: false
-  codex_responses_compact_threshold:
-  protect_first_n: 3
+  codex_responses_compact_threshold: null
   idle_compact_after_seconds: 0
   hygiene_max_turn_hold_seconds: 10
   proactive_prune_tokens: 0
@@ -128,7 +122,7 @@ memory:
 # =============================================================================
 # Session Continuity (Messaging Platforms)
 # =============================================================================
-max_concurrent_sessions:
+max_concurrent_sessions: 5
 group_sessions_per_user: true
 
 # =============================================================================
@@ -186,7 +180,7 @@ agent:
 gateway:
   unmanaged_idle_exit_seconds: 600
   signal_interrupt_grace_timeout: 1
-  service_install_choice:
+  service_install_choice: null
   delivery_ledger: true
   platform_connect_timeout: 30
   loop_watchdog: true
@@ -326,6 +320,12 @@ updates:
   check: true
   backup_keep: 5
   non_interactive_local_changes: "stash"
+
+kanban:
+  review_dispatch: true
+
+cron:
+  catch_up_missed: true  # False skips past-grace recurring misses after planned downtime.
 
 auxiliary:
   compression:
