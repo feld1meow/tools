@@ -328,7 +328,7 @@ cron:
 
 auxiliary:
   compression:
-    context_length: 131072
+    context_length: 262144
 onboarding:
   seen:
     tool_progress_prompt: true
